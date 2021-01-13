@@ -1,11 +1,10 @@
 # xiaomi_0106
-学习用 仿小米商城
-只有用户，管理员，商品的增删改查
-MySQL
-java
-jQuery
-Ajax
+项目简介：学习用 仿小米商城
+功能简介：只有用户，管理员，商品的增删改查
+技术：MySQL java jQuery Ajax js
+工具：idea,mysql5.5
 
+数据库表如下：
 CREATE TABLE `category` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
   `cname` varchar(60) NOT NULL,

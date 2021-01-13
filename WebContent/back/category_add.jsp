@@ -1,60 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>添加类别</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>添加类别</title>
 
-<script language="javascript" type="text/javascript" src="<%=basePath %>admin/js/My97DatePicker/WdatePicker.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<!-- 错误提示的样式修改 -->
+	<style type="text/css">
+		.forminfo li{width:850px;margin-bottom:13px; clear:both;}
+		.forminfo li label{width:86px;line-height:34px; display:block; float:right;}
+		.forminfo li .title{width:86px;line-height:34px; display:block; float:left;}
+		.error{
+			width:490px;
+			margin-top:5px;
+			padding-top:5px;
+			color:red;
+		}
+	</style>
+
+	<!-- 引入jquery -->
+	<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-3.3.1.js"></script>
+	<!-- 引入validate验证插件：验证非空  格式验证 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery.validate.js"></script>
+	<!-- validate语言插件：默认验证插件是英文  引入一个支持中文的设置 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/messages_zh.js"></script>
+
+
+	<!-- my97日期插件 -->
+	<script language="javascript" type="text/javascript"
+			src="${pageContext.request.contextPath }/back/js/My97DatePicker/WdatePicker.js"></script>
 </head>
 
 <body>
 
-	<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-    <li><a href="#">添加类别</a></li>
-    </ul>
-    </div>
-    
-    <div class="formbody">
-    
-    <div class="formtitle"><span>类别信息</span></div>
-    
-    <form action="" method="post">
-	    <ul class="forminfo">
-		    <li><label>类别名称</label><input name="cname" type="text" class="dfinput" /><i>类别名称不能超过30个字符</i></li>
-		    <li><label>是否启用</label>
-			    <cite>
-				    <input name="status" type="radio" value="1" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
-				    <input name="status" type="radio" value="0" />否
-			    </cite>
-		    </li>
-		    
-		    <li><label>排序序号</label>
-		    	<input name="order_number" type="text" class="dfinput" /><i>输入数字，越大越靠后排列</i>
-		    </li>
-		    
-		    <li><label>类别描述</label>
-		    	<textarea name="mark" cols="" rows="" class="textinput"></textarea>
-		    </li>
-		    
-		    <li><label>创建时间</label>
-		    	<input class="Wdate" style="width: 345px;height: 32px;line-height: 32px;" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="create_time" type="text" class="dfinput" value="" />
-		    </li>
-		    
-		    <li><label>&nbsp;</label><input type="submit" class="btn" value="确认保存"/></li>
-	    </ul>
-    </form>
-    </div>
+<div class="place">
+	<span>位置：</span>
+	<ul class="placeul">
+		<li><a href="#">添加类别</a></li>
+	</ul>
+</div>
+
+<div class="formbody">
+
+	<div class="formtitle"><span>类别信息</span></div>
+	<!-- 增加的表单 -->
+	<form action="${pageContext.request.contextPath }/category?key=insertCategory"
+		  method="post" id="cateForm">
+		<ul class="forminfo">
+			<li><label class="title">类别名称</label>
+				<input name="cname" type="text" class="dfinput" required="required"/>
+				<i>类别名称不能超过30个字符</i></li>
+			<li><label class="title">是否启用</label>
+				<cite>
+					<input name="state" type="radio" value="1" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="state" type="radio" value="0" />否
+				</cite>
+			</li>
+
+			<li><label class="title">排序序号</label>
+				<input name="order_num" type="text" class="dfinput" required="required"/>
+				<i>输入数字，越大越靠后排列</i>
+			</li>
+
+			<li><label class="title">类别描述</label>
+				<textarea name="description" cols="" rows="" class="textinput" required="required"></textarea>
+			</li>
+
+			<li><label class="title">创建时间</label>
+				<input class="Wdate" style="width: 345px;height: 32px;line-height: 32px;"
+					   onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"
+					   name="create_date" type="text" class="dfinput" value="" required="required"/>
+			</li>
+
+			<li><label>&nbsp;</label><input type="submit" class="btn" value="确认保存"/></li>
+		</ul>
+	</form>
+</div>
+
+<script type="text/javascript">
+	/* 表单提交的时候进行非空验证 */
+	$("#cateForm").validate();
+</script>
 </body>
 </html>

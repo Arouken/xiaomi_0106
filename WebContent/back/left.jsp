@@ -43,7 +43,7 @@ $(function(){
 <body style="background:#f0f9fd;">
 	<div class="lefttop"><span></span>功能列表</div>
     
-    <dl class="leftmenu">
+    <dl class="leftmenu"/>
         
     <dd>
     <div class="title">
@@ -52,9 +52,15 @@ $(function(){
     	<ul class="menuson">
         <li class="active"><cite></cite><a href="index.jsp" target="rightFrame">欢迎页面</a><i></i></li>
         
-        <li><cite></cite><a href="${pageContext.request.contextPath }/user?key=queryUserByPage"  target="rightFrame">用户管理</a><i></i></li>
-        <li><cite></cite><a href="<%=basePath %>categoryServlet?mark=findCategoryList" target="rightFrame">商品类别管理</a><i></i></li>
-        <li><cite></cite><a href="<%=basePath %>commodityServlet?mark=findCommodityList" target="rightFrame">商品管理</a><i></i></li>
+        <li><cite></cite>
+        <a href="${pageContext.request.contextPath }/user?key=queryUserByPage" 
+        target="rightFrame">用户管理</a><i></i></li>
+
+        <li><cite></cite><a href="${pageContext.request.contextPath }/category?key=queryCategoryByPage"
+        target="rightFrame">商品类别管理</a><i></i></li>
+
+        <li><cite></cite><a href="${pageContext.request.contextPath }/commodity?key=queryCommodityByPage"
+        target="rightFrame">商品管理</a><i></i></li>
         
        
         

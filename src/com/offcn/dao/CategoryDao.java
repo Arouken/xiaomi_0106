@@ -20,5 +20,11 @@ public interface CategoryDao {
 	List<Category> queryByPage(PageTool<Category> pageTool);
 	//查询所有分类
 	List<Category> queryAllCategory();
+	//根据id查询
+	Category queryById(Integer cid);
+	//根据id删除
+	int deleteById(Integer cid);
+	//保存修改
+	int updateCategory(Category category);
 
 }

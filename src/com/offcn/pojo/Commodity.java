@@ -20,7 +20,10 @@ public class Commodity {
 	private String photo;
 	private String model;
 	private Date create_date;
-	
+	private Category category;
+
+
+
 	public Integer getCid() {
 		return cid;
 	}
@@ -112,7 +115,37 @@ public class Commodity {
 		this.model = model;
 		this.create_date = create_date;
 	}
-	
-	
+
+
+	public Commodity(Integer cid, Integer cate_id, Integer ctype, Double price, String cname, String color, String size,
+					 String short_desc, String full_desc, String photo, String model, Date create_date) {
+		super();
+		this.cid = cid;
+		this.cate_id = cate_id;
+		this.ctype = ctype;
+		this.price = price;
+		this.cname = cname;
+		this.color = color;
+		this.size = size;
+		this.short_desc = short_desc;
+		this.full_desc = full_desc;
+		this.photo = photo;
+		this.model = model;
+		this.create_date = create_date;
+	}
+
+
+
+
+
+
+
+
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }

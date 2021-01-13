@@ -19,4 +19,12 @@ public interface CategoryService {
 	//查询所有分类信息
 	List<Category> queryAllCategory();
 
+	//批量删除
+	String batchDelete(String[] values);
+
+	//修改之前的查询
+	Category queryCategoryById(Integer cid);
+	//保存修改
+	int updateCategory(Category category);
+
 }

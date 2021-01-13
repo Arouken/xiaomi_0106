@@ -57,4 +57,40 @@ public class CategoryDaoImpl extends BaseDao<Category> implements CategoryDao{
 		return list;
 	}
 
+	/**
+	 * 根据id查询
+	 */
+	@Override
+	public Category queryById(Integer cid) {
+		String sql="SELECT * FROM category WHERE cid=?";
+		Category category = getBean(sql, cid);
+		return category;
+	}
+
+	/**
+	 * 根据id删除
+	 */
+	@Override
+	public int deleteById(Integer cid) {
+		String sql="DELETE FROM category WHERE cid=?";
+		int num = update(sql, cid);
+		return num;
+	}
+	/**
+	 * 保存修改后数据
+	 */
+	@Override
+	public int updateCategory(Category category) {
+		String sql="UPDATE `category` SET\r\n" + 
+				"  `cname` = ?,\r\n" + 
+				"  `state` = ?,\r\n" + 
+				"  `order_num` = ?,\r\n" + 
+				"  `description` = ?,\r\n" + 
+				"  `create_date` = ? \r\n" + 
+				"WHERE `cid` = ? ";
+		int num = update(sql, category.getCname(),category.getState(),category.getOrder_num(),
+				category.getDescription(),category.getCreate_date(),category.getCid());
+		return num;
+	}
+
 }

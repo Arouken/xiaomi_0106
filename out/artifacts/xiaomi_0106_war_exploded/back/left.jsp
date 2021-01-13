@@ -43,7 +43,7 @@ $(function(){
 <body style="background:#f0f9fd;">
 	<div class="lefttop"><span></span>功能列表</div>
     
-    <dl class="leftmenu"/>
+    <dl class="leftmenu">
         
     <dd>
     <div class="title">
@@ -55,11 +55,9 @@ $(function(){
         <li><cite></cite>
         <a href="${pageContext.request.contextPath }/user?key=queryUserByPage" 
         target="rightFrame">用户管理</a><i></i></li>
-
-        <li><cite></cite><a href="${pageContext.request.contextPath }/category?key=queryCategoryByPage"
+        <li><cite></cite><a href="${pageContext.request.contextPath }/category?key=queryCategoryByPage" 
         target="rightFrame">商品类别管理</a><i></i></li>
-
-        <li><cite></cite><a href="${pageContext.request.contextPath }/commodity?key=insertCommodity"
+        <li><cite></cite><a href="${pageContext.request.contextPath }/commodity?key=queryCommodityByPage" 
         target="rightFrame">商品管理</a><i></i></li>
         
        

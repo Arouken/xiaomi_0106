@@ -89,5 +89,77 @@ public class CategoryServlet extends BaseServlet{
 		request.getRequestDispatcher("back/commodity_add.jsp").forward(request, response);
 		
 	}
+	/**
+	 * 批量删除
+	 */
+	public void batchDelete(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		//获取页面传入的id
+		String[] values = request.getParameterValues("ids");
+		//调用删除方法
+		String msg= categoryService.batchDelete(values);
+		//判断返回值
+		if (!msg.equals("")) {
+			//将分类显示到展示页面
+			request.setAttribute("msg", msg+"分类下面有商品，不能删除！");
+		}
+		 //是否删除成功都跳转查询
+		 queryCategoryByPage(request, response);
+		
+	}
+	/**
+	 * 修改分类之前的查询
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	public void queryCategoryById(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//获取请求中的id
+		Integer cid = Integer.valueOf(request.getParameter("cid"));
+		//根据id查询的方法调用
+		Category category = categoryService.queryCategoryById(cid);
+		//判断分类对象
+		if (category==null) {
+			//分类下面有商品不能修改
+			request.setAttribute("msg", "当前分类下面有商品不能修改！");
+			//转发到分类的展示页面
+			queryCategoryByPage(request, response);
+		}else {
+			//将分类对象存储作用域
+			request.setAttribute("category", category);
+			//转发到分类的修改页面
+			request.getRequestDispatcher("back/category_update.jsp").forward(request, response);
+		}
+		
+		
+	}
+	/**
+	 * 保存修改
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	public void updateCategory(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//获取表单的参数
+		Integer cid = Integer.valueOf(request.getParameter("cid"));
+		String cname = request.getParameter("cname");
+		Integer state = Integer.valueOf(request.getParameter("state"));
+		Integer order_num = Integer.valueOf(request.getParameter("order_num"));
+		String description = request.getParameter("description");
+		//创建日期
+		String createDate = request.getParameter("create_date");
+		//字符串转换成日期类型
+		Date create_date = DateTool.stringToDate(createDate);
+		//将参数封装成分类对象
+		Category category=new Category(cid, state, order_num,
+				cname, description, create_date);
+		//调用后台保存修改的方法
+		int row=categoryService.updateCategory(category);
+		if (row>0) {
+			queryCategoryByPage(request, response);
+		}
+		
+	}
+	
 
 }

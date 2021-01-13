@@ -1,9 +1,10 @@
 # xiaomi_0106
-项目简介：学习用 仿小米商城
+项目简介：学习用 仿小米商城 
+手机号验证码验证采用第三方平台https://user.ihuyi.com ，数据可在工具类中修改 有免费50次的短信
 
 功能简介：只有用户，管理员，商品的增删改查
 
-技术：MySQL java jQuery Ajax js
+关键词：MySQL java jQuery Ajax js c3p0 正则
 
 工具：idea,mysql5.5
 

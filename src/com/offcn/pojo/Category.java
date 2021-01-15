@@ -7,14 +7,14 @@ package com.offcn.pojo;
 import java.util.Date;
 
 public class Category {
-
+	
 	private Integer cid;
 	private Integer state;
 	private Integer order_num;
 	private String cname;
 	private String description;
 	private Date create_date;
-
+	
 	public Integer getCid() {
 		return cid;
 	}
@@ -73,5 +73,5 @@ public class Category {
 		this.create_date = create_date;
 	}
 
-
+	
 }

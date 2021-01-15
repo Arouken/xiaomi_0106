@@ -20,11 +20,10 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 				"  `full_desc`,`photo`,\r\n" + 
 				"  `ctype`,`model`, `create_date`\r\n" + 
 				") VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-		int num=update(sql, commodity.getCate_id(),commodity.getCname(),commodity.getColor(),
+		return update(sql, commodity.getCate_id(),commodity.getCname(),commodity.getColor(),
 				commodity.getSize(),commodity.getPrice(),commodity.getShort_desc(),
 				commodity.getFull_desc(),commodity.getPhoto(),commodity.getCtype(),
 				commodity.getModel(),commodity.getCreate_date());
-		return num;
 	}
 
 	/**
@@ -34,8 +33,7 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 	public Integer queryCount() {
 		String sql="SELECT COUNT(*) FROM commodity";
 		Object singelValue = getSingelValue(sql);
-		Integer num = Integer.valueOf(singelValue.toString());
-		return num;
+		return Integer.valueOf(singelValue.toString());
 	}
 
 	/**
@@ -44,8 +42,7 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 	@Override
 	public List<Commodity> queryCommodityByPage(PageTool<Commodity> pageTool) {
 		String sql="SELECT *FROM commodity  LIMIT ?,?";
-		List<Commodity> list = getBeanList(sql, pageTool.getStartIndex(),pageTool.getPageSize());
-		return list;
+		return getBeanList(sql, pageTool.getStartIndex(),pageTool.getPageSize());
 	}
 
 	/**
@@ -54,8 +51,7 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 	@Override
 	public Commodity queryCommodityById(Integer cid) {
 		String sql="SELECT * FROM commodity WHERE cid=?";
-		Commodity commodity = getBean(sql, cid);
-		return commodity;
+		return getBean(sql, cid);
 	}
 
 	/**
@@ -76,11 +72,10 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 				"  `model` = ?,\r\n" + 
 				"  `create_date` = ? \r\n" + 
 				"WHERE `cid` = ? ";
-		int num=update(sql, commodity.getCate_id(),commodity.getCname(),commodity.getColor(),
+		return update(sql, commodity.getCate_id(),commodity.getCname(),commodity.getColor(),
 				commodity.getSize(),commodity.getPrice(),commodity.getShort_desc(),
 				commodity.getFull_desc(),commodity.getPhoto(),commodity.getCtype(),
 				commodity.getModel(),commodity.getCreate_date(),commodity.getCid());
-		return num;
 	}
 
 	/**
@@ -89,8 +84,22 @@ public class CommodityDaoImpl extends BaseDao<Commodity> implements CommodityDao
 	@Override
 	public List<Commodity> queryCommodityByCid(Integer cid) {
 		String sql="SELECT * FROM commodity WHERE cate_id=?";
-		List<Commodity> list = getBeanList(sql, cid);
-		return list;
+		return getBeanList(sql, cid);
+	}
+
+	/**
+	 * 小米明星单品查询
+	 */
+	@Override
+	public List<Commodity> queryIndexCommodity() {
+		String sql="SELECT * FROM commodity WHERE ctype=4 ORDER BY cid DESC LIMIT 5";
+		return getBeanList(sql);
+	}
+
+	@Override
+	public List<Commodity> queryIndexHomeCommodity() {
+		String sql="SELECT * FROM commodity WHERE cate_id=3 ORDER BY cid DESC LIMIT 8";
+		return getBeanList(sql);
 	}
 
 }

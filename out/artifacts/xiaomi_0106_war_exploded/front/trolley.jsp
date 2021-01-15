@@ -1,22 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%	
-	//获取项目名
-	String path = request.getContextPath();
-	//获取tomcat 协议+地址+端口号+ 获取项目名
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	//获取tomcat 协议+地址+端口号
-	String imgPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/img_pro/";
-	
-%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>购物车</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/front/css/index.css">
 <script type="text/javascript">
 	
 	
@@ -26,7 +17,7 @@
     <div class="order_head">
         <div class="head_background">
             <div class="head_box">
-                <a href="index.html" class="head_left_a"><img src="img/logo.jpg" alt="" class="head_left_p"></a>
+                <a href="trolley.jsp" class="head_left_a"><img src="img/logo.jpg" alt="" class="head_left_p"></a>
                 <h1 class="head_h1">我的购物车</h1>
                 <div class="head_right">
                     <span class="head_right_in"> 用户名称/用户账号 </span>

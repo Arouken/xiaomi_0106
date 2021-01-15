@@ -31,12 +31,12 @@ public class CategoryServiceImpl implements CategoryService{
 		//1.创建分页对象
 		PageTool<Category> pageTool=new PageTool<Category>(currentPage, totalCount);
 		//3.分页查询
-		List<Category> categoryList=	categoryDao.queryByPage(pageTool);
-		//4.将集合设置到分页对象中
-		pageTool.setList(categoryList);
+	   List<Category> categoryList=	categoryDao.queryByPage(pageTool);
+	   //4.将集合设置到分页对象中
+	   pageTool.setList(categoryList);
 		return pageTool;
 	}
-
+	
 	@Override
 	public List<Category> queryAllCategory() {
 		List<Category> categoryList=categoryDao.queryAllCategory();
@@ -82,9 +82,9 @@ public class CategoryServiceImpl implements CategoryService{
 		//判断分类下面是否有商品
 		if (list.size()==0) {
 			//分类下没有商品，可以修改
-			category = categoryDao.queryById(cid);
+			 category = categoryDao.queryById(cid);
 		}
-		//分类下有商品不能修改
+	    //分类下有商品不能修改
 		return category;
 	}
 	//保存修改
@@ -92,6 +92,11 @@ public class CategoryServiceImpl implements CategoryService{
 	public int updateCategory(Category category) {
 		int row=categoryDao.updateCategory(category);
 		return row;
+	}
+	@Override
+	public List<Category> queryIndexCategory() {
+		List<Category> categoryLiset=categoryDao.queryIndexCategory();
+		return categoryLiset;
 	}
 
 }

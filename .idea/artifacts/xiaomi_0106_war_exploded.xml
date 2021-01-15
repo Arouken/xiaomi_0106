@@ -4,14 +4,14 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="xiaomi_0106" />
+          <element id="module-output" name="xiaomi" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="lib1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="xiaomi_0106/web/Web" />
+      <element id="javaee-facet-resources" facet="xiaomi/web/Web" />
     </root>
   </artifact>
 </component>

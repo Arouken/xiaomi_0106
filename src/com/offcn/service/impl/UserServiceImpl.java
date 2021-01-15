@@ -1,5 +1,7 @@
 package com.offcn.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.offcn.dao.UserDao;
@@ -8,8 +10,6 @@ import com.offcn.pojo.User;
 import com.offcn.service.UserService;
 import com.offcn.utils.PageTool;
 import com.offcn.utils.SendSms;
-
-import java.util.List;
 
 public class UserServiceImpl implements UserService{
 	//引入dao
@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void sendCode(String phone,HttpSession session) {
 		//调用工具类发送验证码到手机上
-		int code = SendSms.sendCode(phone);
+		//int code = SendSms.sendCode(phone);
 		//为了避免浪费免费短信，测试的时候可以使用固定值
-		//int code = 123456;
+		int code = 123456;
 		if(code>0) {
 			//定义字符串
 			String oldCode=phone+"#"+code;
@@ -64,6 +64,13 @@ public class UserServiceImpl implements UserService{
 		String newCode=phone+"#"+code;
 		//比较两个验证码的值
 		if (oldCode.equals(newCode)) {
+			/**
+			 * 将当前登录人信息存储到session
+			 */
+			//查询登录人信息：根据手机号
+			User user = userDao.findByPhone(phone);
+			session.setAttribute("frontUser", user);
+			
 			//登录成功
 			return 1;
 		}
@@ -101,8 +108,6 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
-
-
 	/**
 	 * 使用分页工具类查询用户信息
 	 */
@@ -114,20 +119,17 @@ public class UserServiceImpl implements UserService{
 		PageTool<User> pageTool=new PageTool<User>(currentPage, totalCount);
 		//3.分页查询
 		List<User> list = userDao.queryUserByPage(pageTool);
-
+		
 		//4.将用户集合设置到分页对象中
 		pageTool.setList(list);
 		return pageTool;
 	}
 
-
-	//修改权限
 	@Override
 	public int updateManager(Integer manager, Integer uid) {
 		int num=userDao.updateManager(manager,uid);
 		return num;
 	}
-
 	/**
 	 * 批量删除
 	 */
@@ -146,4 +148,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return sum;
 	}
+
+	
+
 }

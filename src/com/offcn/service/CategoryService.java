@@ -27,4 +27,7 @@ public interface CategoryService {
 	//保存修改
 	int updateCategory(Category category);
 
+	//首页分类查询
+	List<Category> queryIndexCategory();
+
 }

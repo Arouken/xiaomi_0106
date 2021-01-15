@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/WebContent/back/left.jsp" value="file://$PROJECT_DIR$/WebContent/back" />
         <entry key="file://$PROJECT_DIR$/WebContent/back/user_list.jsp" value="file://$PROJECT_DIR$/WebContent/back" />
+        <entry key="file://$PROJECT_DIR$/WebContent/front/index.jsp" value="file://$PROJECT_DIR$/WebContent/front" />
       </map>
     </option>
   </component>

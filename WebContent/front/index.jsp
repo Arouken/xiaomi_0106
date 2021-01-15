@@ -4,22 +4,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <!-- 引入JSTL函数标签库 -->
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%	
-	//获取项目名
-	String path = request.getContextPath();
-	//获取tomcat 协议+地址+端口号+ 获取项目名
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	//获取tomcat 协议+地址+端口号
-	String imgPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
-	
-%>
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>小米首页</title>
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/jquery.1.11.1.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/front/css/index.css">
+    <script src="${pageContext.request.contextPath}/front/js/jquery.1.11.1.min.js"></script>
     <style>
 
     </style>
@@ -33,12 +25,12 @@
     <!-- 滚动图片 -->
     <div class="scroll">
         <ul>
-            <li><a href=""><img src="img/scroll_01.jpg" alt=""></a></li>
-            <li><a href=""><img src="img/scroll_02.jpg" alt=""></a></li>
-            <li><a href=""><img src="img/scroll_03.jpg" alt=""></a></li>
-            <li><a href=""><img src="img/scroll_04.jpg" alt=""></a></li>
-            <li><a href=""><img src="img/scroll_05.jpg" alt=""></a></li>
-            <li><a href=""><img src="img/scroll_06.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_01.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_02.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_03.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_04.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_05.jpg" alt=""></a></li>
+            <li><a href=""><img src="${pageContext.request.contextPath}/front/img/scroll_06.jpg" alt=""></a></li>
         </ul>
         <div class="scroll_dot">
             <span class="scroll_dot_span"></span>
@@ -52,18 +44,12 @@
             <a href="javascript:void(0);"><span class="left scroll_arrows_back">〈</span></a>
             <a href="javascript:void(0);"><span class="right scroll_arrows_back">〉</span></a>
         </div>
+        <!-- 分类信息展示 -->
         <div class="scroll_left" style="height: 420px;">
             <ul class="scr-ul">
-                <li class="scr_li"><a href="">手机 电话卡</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">笔记本</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">电视 盒子</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">路由器 智能硬件</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">移动电源 电池 插线板</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">耳机 音响</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">保护套 贴膜</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">线材 支架 存储卡</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">箱包 服饰 鞋 眼镜</a><i class="scr_i"></i></li>
-                <li class="scr_li"><a href="">米兔 生活周边</a><i class="scr_i"></i></li>
+            	<c:forEach items="${categoryList }" var="category">
+            		<li class="scr_li"><a href="#">${category.cname }</a><i class="scr_i"></i></li>
+            	</c:forEach>
             </ul>
         </div>
         
@@ -72,57 +58,59 @@
         <div class="bot_max">
             <div class="bot_first">
                 <div class="bot_one">
-                    <div><a href=""><img src="img/bot_01.jpg">选购手机</a></div>
-                    <div><a href=""><img src="img/bot_02.jpg">企业团购</a></div>
-                    <div><a href=""><img src="img/bot_03.jpg">F码通道</a></div>
-                    <div><a href=""><img src="img/bot_04.jpg">img米粉卡</a></div>
-                    <div><a href=""><img src="img/bot_05.jpg">以旧换新</a></div>
-                    <div><a href=""><img src="img/bot_06.jpg">话费充值</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_01.jpg">选购手机</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_02.jpg">企业团购</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_03.jpg">F码通道</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_04.jpg">img米粉卡</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_05.jpg">以旧换新</a></div>
+                    <div><a href=""><img src="${pageContext.request.contextPath}/front/img/bot_06.jpg">话费充值</a></div>
                 </div>
 
             </div>
-            <a href="#"><img src="img/3_02.jpg" alt=""></a>
-            <a href="#"><img src="img/3_03.jpg" alt=""></a>
-            <a href="#"><img src="img/3_04.jpg" alt=""></a>
+            <a href="#"><img src="${pageContext.request.contextPath}/front/img/3_02.jpg" alt=""></a>
+            <a href="#"><img src="${pageContext.request.contextPath}/front/img/3_03.jpg" alt=""></a>
+            <a href="#"><img src="${pageContext.request.contextPath}/front/img/3_04.jpg" alt=""></a>
         </div>
     </div>
     <div class="time">
         <div class="H">小米明星单品</div>
         <div class="time_in">
-        	    <!-- 动态数据时使用，已经修改过css -->
-				<!--
-		            <div style="background-color: #fff;width: 234px;height:320px;float: left;margin-left: 11px; ">
-		            	<a href="#" target="_blank">
-		            		<img class="time_min" style="width:234px;height: 234px;" src="" alt="">
+        	    <!-- 小米明星单品动态展示 -->
+				
+		        <c:forEach items="${stars }" var="star">
+		        		<div style="background-color: #fff;width: 234px;height:320px;float: left;margin-left: 11px; ">
+		            	<!-- 查询商品的详情 -->
+		            	<a href="${pageContext.request.contextPath}/index?key=queryCommodityDetail&cid=${star.cid}" 
+		            			target="_blank">
+		            	<!-- 商品图片 -->
+		            		<img class="time_min" style="width:234px;height: 234px;" 
+		            		   src="img/${star.photo }" alt="">
 		            	</a>
 		            	<div style="clear: both;"></div>
 		            	
 		            	<div style="width: 234px;height: 85px;">
 		            		<div style="width: 234px;height: 20px;line-height: 20px;text-align: center;font-size: 14px;font-family: Arial">
-		            			产品名称
+		            			${star.cname }
 		            		</div>
 		            		<div style="width: 234px;height: 30px;line-height: 30px;text-align: center;color: #ff6700;font-size: 14px;font-family: Arial">
-		            			 99999 span style="color: #000"> &nbsp;起始价 </span>
+		            			  <span style="color:#000"> &nbsp;${star.price }</span>
 		            		</div>
 		            		<div style="width: 234px;height: 35px;line-height: 35px;text-align: center;color: #000;font-size: 14px;font-family: Arial" title="????">
-		            			
-		            			<c:if test="${comm.description.length() <=12 }">
-		            				${comm.description}
+		            			<!-- 商品简介 -->
+		            			<c:if test="${star.short_desc.length() <=12 }">
+		            				${star.short_desc}
 		            			</c:if>
-		            			<c:if test="${comm.description.length() > 12 }">
-		            				${ fn:substring(comm.description ,0,12)}...
+		            			<c:if test="${star.short_desc.length() > 12 }">
+		            				${ fn:substring(star.short_desc ,0,12)}...
 		            			</c:if>
 		            		</div>
 		            	</div>
 		            </div>
-	            -->
+		       
+		        </c:forEach>    
+	         
 	            
-	            <!-- 原始代码 -仅供参考 -->
-	            <div><a href=""><img class="time_min" src="img/4_01.jpg" alt=""></a></div>
-	            <div><a href=""><img src="img/4_02.jpg" alt=""></a></div>
-	            <div><a href=""><img src="img/4_03.jpg" alt=""></a></div>
-	            <div><a href=""><img src="img/4_04.jpg" alt=""></a></div>
-	            <div><a href=""><img src="img/4_05.jpg" alt=""></a></div>
+	           
         </div>
     </div>
     <div class="appliances">
@@ -135,44 +123,65 @@
                <div class="app_Ar_r"><a href="">家居</a></div>
             </div>
             <div class="app_max">
-                <div class="appl"><a href=""><img src="img/app_00.jpg" alt=""></a></div>
+                <div class="appl"><a href=""><img src="${pageContext.request.contextPath}/front/img/app_00.jpg" alt=""></a></div>
                 <div class="appr">
                     <div class="appr_top">
                     	<!-- 循环后台取到的家电的集合 -->
                     		
-                    		<!-- 动态获取数据时使用，已经修改过css -->
-                   			<!-- 动态获取数据时使用，已经修改过css -->
-                   		  <!-- 
-                  			第一排4个商品 
-                  			<div class="appr_min" id="appr_min1" style="margin-left: 12px;width: 234px;height: 300px;background-color: #FFF;text-align: center;">
-                  			<a href="" target="_blank"><img width="180px" height="180px;" src="图片地址" alt=""></a>
-                  			
-                  			<div style="width: 234px;height: 100px;">
-                  				<div style="width: 100%;height: 33px;text-align: center;font-size: 14px;font-family: Arial">商品名称</div>
-                  				<div style="width: 100%;height: 33px;text-align: center;font-size: 14px;font-family: Arial">描述信息</div>	
-                  				<div style="width: 100%;height: 33px;text-align: center;color: #ff6700;font-size: 14px;font-family: Arial">商品价格</div>
-                  			</div>
-                  			</div>
-                  			第二排4个商品 
-                  			<div class="appr_min" style="margin-left: 12px;width: 234px;height: 300px;background-color: #FFF;text-align: center;margin-top: 15px;" id="appr_min1">
-                  			<a href=""><img width="180px" height="180px;" src="图片地址" alt=""></a>
-                  			<div style="width: 234px;height: 100px;">
-                  				<div style="width: 100%;height: 33px;text-align: center;font-size: 14px;font-family: Arial">商品名称}</div>
-                  				<div style="width: 100%;height: 33px;text-align: center;font-size: 14px;font-family: Arial">描述信息</div>	
-                  				<div style="width: 100%;height: 33px;text-align: center;color: #ff6700;font-size: 14px;font-family: Arial">商品价格</div>
-                  			</div>
-                  			</div> -->
-                   			
-                   			<!-- 原始代码 -->
-	                        <div class="appr_min" id="appr_min1"><a href=""><img src="img/app_04.jpg" alt=""></a></div>
-	                        <div class="appr_min"><a href=""><img src="img/app_03.jpg" alt=""></a></div>
-	                        <div class="appr_min"><a href=""><img src="img/app_02.jpg" alt=""></a></div>
-	                        <div class="appr_min"><a href=""><img src="img/app_01.jpg" alt=""></a></div>
-	                        
-	                        <div class="appr_min" style="margin-top: 15px;" id="appr_min1"><a href=""><img src="img/app_04.jpg" alt=""></a></div>
-	                        <div class="appr_min" style="margin-top: 15px;"><a href=""><img src="img/app_03.jpg" alt=""></a></div>
-	                        <div class="appr_min" style="margin-top: 15px;"><a href=""><img src="img/app_02.jpg" alt=""></a></div>
-	                        <div class="appr_min" style="margin-top: 15px;"><a href=""><img src="img/app_01.jpg" alt=""></a></div>
+                    	<c:forEach items="${homes }" var="home" varStatus="vs">
+                    	
+                    	    <!-- 第一排4个商品  -->
+                    	    <c:if test="${vs.count<=4 }">
+	                  			<div class="appr_min" id="appr_min1" style="margin-left: 12px;width: 234px;height: 300px;background-color: #FFF;text-align: center;">
+		                  			<a href="${pageContext.request.contextPath}/index?key=queryCommodityDetail&cid=${home.cid}" target="_blank">
+			                  			<img width="180px" height="180px;" 
+			                  			src="img/${home.photo }" alt="">
+		                  			</a>
+	                  			
+	                  			<div style="width: 234px;height: 100px;">
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				font-size: 14px;font-family: Arial">${home.cname }</div>
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				font-size: 14px;font-family: Arial">
+	                  				   <c:if test="${home.short_desc.length() <=5 }">
+				            				${home.short_desc}
+				            			</c:if>
+				            			<c:if test="${home.short_desc.length() > 5 }">
+				            				${ fn:substring(home.short_desc ,0,5)}...
+				            			</c:if>
+	                  				</div>	
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				color: #ff6700;font-size: 14px;font-family: Arial">${home.price }</div>
+	                  			</div>
+	                  			</div>
+                  			</c:if>
+                  			<!-- 第二排4个商品  -->
+                  			 <c:if test="${vs.count>4 }">
+	                  			<div class="appr_min" style="margin-left: 12px;width: 234px;height: 300px;background-color: #FFF;text-align: center;margin-top: 15px;" id="appr_min1">
+	                  			<a href="${pageContext.request.contextPath}/index?key=queryCommodityDetail&cid=${home.cid}" target="_blank">
+	                  			    <img width="180px" height="180px;" 
+			                  			src="img/${home.photo }" alt="">
+	                  			</a>
+	                  			<div style="width: 234px;height: 100px;">
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				font-size: 14px;font-family: Arial">${home.cname }</div>
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				font-size: 14px;font-family: Arial">
+	                  				   <c:if test="${home.short_desc.length() <=5 }">
+				            				${home.short_desc}
+				            			</c:if>
+				            			<c:if test="${home.short_desc.length() > 5 }">
+				            				${ fn:substring(home.short_desc ,0,5)}...
+				            			</c:if>
+	                  				</div>	
+	                  				<div style="width: 100%;height: 33px;text-align: center;
+	                  				color: #ff6700;font-size: 14px;font-family: Arial">${home.price }</div>
+	                  			</div>
+	                  			</div>
+                    		</c:if>
+                    	
+                    	</c:forEach>
+                		
                     </div>
                 </div>
             </div>
@@ -210,10 +219,10 @@
 	                    
 	                    <!-- 原始网页，仅供参考 -->
 	                    <div class="capa capa_shadow">
-	                        <a href=""><img src="img/capa_01.jpg"></a>
+	                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_01.jpg"></a>
 	                    </div>
 	                    <div class="capa capa_shadow">
-	                        <a href=""><img src="img/capa_02.jpg">
+	                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_02.jpg">
 	                            <div class="tran">
 	                                <span>小米一如既往的好前天下单今天就到了，送货到家很细心的...</span>
 	                            </div>
@@ -227,7 +236,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="capa capa_shadow">
-	                        <a href=""><img src="img/capa_03.jpg"><div class="tran">
+	                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_03.jpg"><div class="tran">
 	                            <span>现在看起来挺不错的，性价比超高！持续关注呀</span>
 	                        </div></a>
 	                        <div class="capa_a">
@@ -239,7 +248,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="capa capa_shadow">
-	                        <a href=""><img src="img/capa_04.jpg"><div class="tran">
+	                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_04.jpg"><div class="tran">
 	                            <span>米兔智能故事机.</span>
 	                        </div></a>
 	                        <div class="capa_a">
@@ -252,7 +261,7 @@
 	
 	                    </div>
 	                    <div class="capa capa_shadow capa_unright">
-	                        <a href=""><img src="img/capa_05.jpg" alt="">
+	                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_05.jpg" alt="">
 	                            <div class="tran">
 	                                <span>小米一如既往的好前天下单今天就到了，送货到家很细心的...</span>
 	                            </div></a>
@@ -289,7 +298,7 @@
 					<!-- 动态数据使用，仅供参考 -->
 					<!--<c:forEach items="${wntjList }" var="comm">
 	                	<div class="capa capa_shadow" style="margin-right: 10px;background-color: #fff">
-	                        <a href=""><img width="234"  src="<%=imgPath %>${comm.pic}">
+	                        <a href=""><img width="234"  src="${comm.pic}">
 	                           
 	                        </a>
 	                        <div class="capa_a">
@@ -303,10 +312,10 @@
                 	</c:forEach>-->
 				
                     <div class="capa capa_shadow">
-                        <a href=""><img src="img/capa_01.jpg"></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_01.jpg"></a>
                     </div>
                     <div class="capa capa_shadow">
-                        <a href="indexServlet?fs=findGoodsDetail&gid=${goods.gid }" target="_blank"><img src="img/capa_02.jpg">
+                        <a href="indexServlet?fs=findGoodsDetail&gid=${goods.gid }" target="_blank"><img src="${pageContext.request.contextPath}/front/img/capa_02.jpg">
                             <!--<div class="tran">-->
                                 <!--<span>小米一如既往的好前天下单今天就到了，送货到家很细心的...</span>-->
                             <!--</div>-->
@@ -320,7 +329,7 @@
                         </div>
                     </div>
                     <div class="capa capa_shadow">
-                        <a href=""><img src="img/capa_03.jpg">
+                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_03.jpg">
                             <!--<div class="tran">-->
                             <!--<span>现在看起来挺不错的，性价比超高！持续关注呀</span>-->
                             <!--</div>-->
@@ -334,7 +343,7 @@
                         </div>
                     </div>
                     <div class="capa capa_shadow">
-                        <a href=""><img src="img/capa_04.jpg">
+                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_04.jpg">
                             <!--<div class="tran">-->
                             <!--<span>米兔智能故事机.</span>-->
                             <!--</div>-->
@@ -349,7 +358,7 @@
 
                     </div>
                     <div class="capa capa_shadow capa_unright">
-                        <a href=""><img src="img/capa_05.jpg" alt="">
+                        <a href=""><img src="${pageContext.request.contextPath}/front/img/capa_05.jpg" alt="">
                             <!--<div class="tran">-->
                                 <!--<span>小米一如既往的好前天下单今天就到了，送货到家很细心的...</span>-->
                             <!--</div>-->
@@ -418,7 +427,7 @@
 	              
 	              <!-- 原始网页  -->
 	              <div class="popu popu_unleft popu_shadow">
-                        <a href=""><img src="img/popu_01.jpg"></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/front/img/popu_01.jpg"></a>
                         <div class="popu_bottom">
                             <p class="review">
                                 外形简洁大方，大爱小米！全家人都在用小米的产品，真心不错，最主要的是性价比高。附图，给客服妹子一个大...
@@ -432,7 +441,7 @@
                         </div>
                     </div>
                 <div class="popu popu_shadow">
-                    <a href=""><img src="img/popu_02.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/popu_02.jpg"></a>
                     <div class="popu_bottom">
                         <p class="review">
                             这箱子很好，外观漂亮，实用性强。很轻，有点软但不影响它的坚固。
@@ -446,7 +455,7 @@
                     </div>
                 </div>
                 <div class="popu popu_shadow">
-                    <a href=""><img src="img/popu_03.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/popu_03.jpg"></a>
                     <div class="popu_bottom">
                         <p class="review">
                             安装简洁方便，信号不错！！！！！
@@ -460,7 +469,7 @@
                     </div>
                 </div>
                 <div class="popu popu_shadow">
-                    <a href=""><img src="img/popu_04.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/popu_04.jpg"></a>
                     <div class="popu_bottom">
                         <p class="review">
                             包装很让人感动，式样也很可爱，做出的饭全家人都爱吃，超爱五星！手机控制还是不太熟练，最主要是没有连接...
@@ -548,7 +557,7 @@
                         <p class="popu_desc"><a href="">“哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！ </a></p>
                         <p class="popu_price"><a href="">29.37元</a></p>
                     </div>
-                    <a href=""><img src="img/cont_01.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/cont_01.jpg"></a>
 
                 </div>
                 <div class="popu cont_border_top2 popu_shadow ">
@@ -559,7 +568,7 @@
                         <p class="popu_desc"><a href="">包宝宝定制主题Q萌上线！快来领取萌萌包宝宝吧！</a></p>
                         <p class="popu_price"><a href="">4.2米币</a></p>
                     </div>
-                    <a href=""><img src="img/cont_02.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/cont_02.jpg"></a>
                 </div>
                 <div class="popu cont_border_top3 popu_shadow ">
 
@@ -569,7 +578,7 @@
                         <p class="popu_desc"><a href="">实力派！一起团！</a></p>
                         <p class="popu_price"><a href=""></a></p>
                     </div>
-                    <a href=""><img src="img/cont_03.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/cont_03.jpg"></a>
                 </div>
                 <div class="popu popu_border_top4 popu_shadow ">
 
@@ -579,7 +588,7 @@
                         <p class="popu_desc"><a href="">最优秀的应用和游戏</a></p>
                         <p class="popu_price"><a href=""></a></p>
                     </div>
-                    <a href=""><img src="img/cont_04.jpg"></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/front/img/cont_04.jpg"></a>
                 </div>
                 
             </div>
@@ -596,7 +605,7 @@
             <div class="popu_box">
                 <div class="vid popu_unleft popu_shadow">
                     <div class="video_top">
-                        <a href=""><video class="this_vid" src="img/snowPerson.mp4" controls loop  poster="img/video_01.jpg"></video></a>
+                        <a href=""><video class="this_vid" src="${pageContext.request.contextPath}/front/img/snowPerson.mp4" controls loop  poster="${pageContext.request.contextPath}/front/img/video_01.jpg"></video></a>
                     </div>
                     <div class="video_bottom">
                         <h3 class="vid_title"><a href="">小米8，一部与众不同的手机</a></h3>
@@ -605,7 +614,7 @@
                 </div>
                 <div class="vid  popu_shadow">
                     <div class="video_top">
-                        <a href=""><video class="this_vid" src="img/snowPerson.mp4" controls loop  poster="img/video_02.jpg"></video></a>
+                        <a href=""><video class="this_vid" src="${pageContext.request.contextPath}/front/img/snowPerson.mp4" controls loop  poster="${pageContext.request.contextPath}/front/img/video_02.jpg"></video></a>
                     </div>
                     <div class="video_bottom">
                         <h3 class="vid_title"><a href="">小米MIX 2S，一面科技 一面艺术</a></h3>
@@ -614,7 +623,7 @@
                 </div>
                 <div class="vid  popu_shadow">
                     <div class="video_top">
-                        <a href=""><video class="this_vid" src="img/snowPerson.mp4" controls loop  poster="img/video_03.jpg"></video></a>
+                        <a href=""><video class="this_vid" src="${pageContext.request.contextPath}/front/img/snowPerson.mp4" controls loop  poster="${pageContext.request.contextPath}/front/img/video_03.jpg"></video></a>
                     </div>
                     <div class="video_bottom">
                         <h3 class="vid_title"><a href="">天生丽质的小米6X</a></h3>
@@ -623,7 +632,7 @@
                 </div>
                 <div class="vid  popu_shadow">
                     <div class="video_top">
-                        <a href=""><video class="this_vid" src="img/snowPerson.mp4" controls loop  poster="img/video_01.jpg"></video></a>
+                        <a href=""><video class="this_vid" src="${pageContext.request.contextPath}/front/img/snowPerson.mp4" controls loop  poster="${pageContext.request.contextPath}/front/img/video_01.jpg"></video></a>
                     </div>
                     <div class="video_bottom">
                         <h3 class="vid_title"><a href="">生活中无所不在的小爱同学</a></h3>

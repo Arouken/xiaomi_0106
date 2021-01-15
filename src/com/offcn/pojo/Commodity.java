@@ -20,10 +20,21 @@ public class Commodity {
 	private String photo;
 	private String model;
 	private Date create_date;
+	/**
+	 * 将分类对象作为参数注入到商品实体类中
+	 * 作为数据的查询展示使用，不参与增删改操作
+	 * 
+	 */
 	private Category category;
-
-
-
+	
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	public Integer getCid() {
 		return cid;
 	}
@@ -115,10 +126,8 @@ public class Commodity {
 		this.model = model;
 		this.create_date = create_date;
 	}
-
-
 	public Commodity(Integer cid, Integer cate_id, Integer ctype, Double price, String cname, String color, String size,
-					 String short_desc, String full_desc, String photo, String model, Date create_date) {
+			String short_desc, String full_desc, String photo, String model, Date create_date) {
 		super();
 		this.cid = cid;
 		this.cate_id = cate_id;
@@ -133,19 +142,7 @@ public class Commodity {
 		this.model = model;
 		this.create_date = create_date;
 	}
-
-
-
-
-
-
-
-
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+	
+	
 
 }

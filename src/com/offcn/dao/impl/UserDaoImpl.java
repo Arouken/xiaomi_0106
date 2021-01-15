@@ -1,11 +1,11 @@
 package com.offcn.dao.impl;
 
+import java.util.List;
+
 import com.offcn.dao.BaseDao;
 import com.offcn.dao.UserDao;
 import com.offcn.pojo.User;
 import com.offcn.utils.PageTool;
-
-import java.util.List;
 
 public class UserDaoImpl extends BaseDao<User> implements UserDao{
 
@@ -100,7 +100,9 @@ public class UserDaoImpl extends BaseDao<User> implements UserDao{
 		return list;
 	}
 
-	//权限修改
+	/**
+	 * 修改账号的权限
+	 */
 	@Override
 	public int updateManager(Integer manager, Integer uid) {
 		String sql="UPDATE users SET manager =? WHERE uid=?";
@@ -117,7 +119,5 @@ public class UserDaoImpl extends BaseDao<User> implements UserDao{
 		int num = update(sql, uid);
 		return num;
 	}
-
-
 
 }

@@ -12,16 +12,15 @@ import com.offcn.service.CommodityService;
 import com.offcn.utils.PageTool;
 
 public class CommodityServiceImpl implements CommodityService{
-
+	
 	//引入dao
-	private CommodityDao commodityDao=new CommodityDaoImpl();
-	//引入分类的dao
-	private CategoryDao categoryDao=new CategoryDaoImpl();
-
+   private CommodityDao commodityDao=new CommodityDaoImpl();
+   //引入分类的dao
+   private CategoryDao categoryDao=new CategoryDaoImpl();
+   
 	@Override
 	public int insertCommodity(Commodity commodity) {
-		int num=commodityDao.insertCommodity(commodity);
-		return num;
+		return commodityDao.insertCommodity(commodity);
 	}
 	/**
 	 * 分页查询
@@ -46,21 +45,26 @@ public class CommodityServiceImpl implements CommodityService{
 			Category category=categoryDao.queryById(cid);
 			commodity.setCategory(category);
 		}
-
+		
 		//集合设置到分页对象中
 		pageTool.setList(list);
 		return pageTool;
 	}
-
 	@Override
 	public Commodity queryCommodityById(Integer cid) {
-		Commodity commodity=commodityDao.queryCommodityById(cid);
-		return commodity;
+		return commodityDao.queryCommodityById(cid);
 	}
 	@Override
 	public int updateCommodity(Commodity commodity) {
-		int row=commodityDao.updateCommodity(commodity);
-		return row;
+		return commodityDao.updateCommodity(commodity);
+	}
+	@Override
+	public List<Commodity> queryIndexCommodity() {
+		return commodityDao.queryIndexCommodity();
+	}
+	@Override
+	public List<Commodity> queryIndexHomeCommodity() {
+		return commodityDao.queryIndexHomeCommodity();
 	}
 
 }

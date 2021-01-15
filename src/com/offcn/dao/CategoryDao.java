@@ -22,9 +22,11 @@ public interface CategoryDao {
 	List<Category> queryAllCategory();
 	//根据id查询
 	Category queryById(Integer cid);
-	//根据id删除
+	//根据id删除 
 	int deleteById(Integer cid);
 	//保存修改
 	int updateCategory(Category category);
+	//查询首页分类
+	List<Category> queryIndexCategory();
 
 }

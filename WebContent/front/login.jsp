@@ -50,7 +50,7 @@ function RemainTime(){
 
 </div>
 <div class="register_head">
-    <a href="index.html"><img src="img/logo.jpg" alt=""></a>
+    <a href="index.jsp"><img src="img/logo.jpg" alt=""></a>
     <div class="register_head_right">
         <p class="register_head_right_p1">小 米 商 城</p>
         <p class="register_head_right_p2">让每个人都享受科技乐趣</p>

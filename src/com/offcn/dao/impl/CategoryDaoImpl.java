@@ -93,4 +93,14 @@ public class CategoryDaoImpl extends BaseDao<Category> implements CategoryDao{
 		return num;
 	}
 
+	/**
+	 * 查询首页的分类信息
+	 */
+	@Override
+	public List<Category> queryIndexCategory() {
+		String sql="SELECT * FROM category WHERE state=1 ORDER BY cid DESC LIMIT 10";
+		List<Category> list = getBeanList(sql);
+		return list;
+	}
+
 }

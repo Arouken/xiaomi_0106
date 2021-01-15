@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 引入jstl标签库 -->
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,20 +13,34 @@
 <div class="box">
       <div class="inner whiteGL">
           <div class="left">
-              <a class="mix" href="">仿小米商城-学习专用</a>
+              <a class="mix" href="">小米商城-学习专用</a>
           </div>
           <div class="right">
-              <a class="mix" href="login.jsp">登录</a>
-              <a href="register.jsp">注册</a>
+          <!--没有登录显示注册和登录 -->
+          <c:if test="${frontUser ==null}">
+          		<a class="mix" href="${pageContext.request.contextPath}/front/login.jsp">登录</a>
+                <a href="${pageContext.request.contextPath}/front/register.jsp">注册</a>
+          
+          </c:if>
+          
+          <!-- 登录成功显示当前登录账号和退出登录按钮 -->
+          <c:if test="${frontUser !=null}">
+              <span style="color:red;"> 欢迎  ${frontUser.uname }  登录小米商城</span>  
+           <a href="${pageContext.request.contextPath}/user?key=frontLoginOut">退出登录</a>
+              <a href="${pageContext.request.contextPath}/user?trolley=queryTrolleyByUid">购物车</a>
+          </c:if>
+              
               <a class="max"  href="">消息通知</a>
-              <a href="trolley.html"><img src="img/cart.jpg" alt=""></a>
+
           </div>
       </div>
   </div>
   <div class="logo">
       <div class="logo_left">
           <div>
-              <a href="javascript:void(0);" title="小米官网"><img class="xiaomi" src="img/logo.jpg"></a>
+              <a href="${pageContext.request.contextPath }/index?key=queryIndexInfo" 
+              title="小米官网">
+              <img class="xiaomi" src="${pageContext.request.contextPath}/front/img/logo.jpg"></a>
           </div>
       </div>
       <ul class="logo_center orangeGL">
@@ -48,7 +64,7 @@
 
 
          </div>
-          <a class="logo_right_a"><img src="img/find.jpg"></a>
+          <a class="logo_right_a"><img src="${pageContext.request.contextPath}/front/img/find.jpg"></a>
           <!--<a href="">红米5新品</a>-->
           <!--<a href="">小米Noto 3</a>-->
       </formv>

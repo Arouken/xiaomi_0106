@@ -1,9 +1,9 @@
 package com.offcn.servlet;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-
 import com.offcn.pojo.User;
 import com.offcn.service.UserService;
 import com.offcn.service.impl.UserServiceImpl;
-import com.offcn.utils.UploadTool;
 import com.offcn.utils.PageTool;
+import com.offcn.utils.UploadTool;
+
+import sun.security.provider.VerificationProvider;
 
 
 /**
@@ -138,7 +139,7 @@ public class UserServlet extends BaseServlet{
 		//登录成功跳转到首页
 	   if (num>0) {
 		  //重定向
-		   response.sendRedirect("front/index.jsp");
+		   response.sendRedirect("index?key=queryIndexInfo");
 	   }
 		
 	}
@@ -174,8 +175,14 @@ public class UserServlet extends BaseServlet{
 		//调用service查询方法
 		User user= userService.queryByNameAndPwd(username,userpwd);
 		if (user!=null) {
+			/**
+			 * 登录成功将信息保存到session
+			 */
+			HttpSession session = request.getSession();
+			session.setAttribute("frontUser", user);
+			
 			//登录成功，跳转首页
-			response.sendRedirect("front/index.jsp");
+			response.sendRedirect("index?key=queryIndexInfo");
 		}
 		
 	}
@@ -217,10 +224,13 @@ public class UserServlet extends BaseServlet{
 		//退出登录，跳转到登录页面
 		response.sendRedirect("back/login.jsp");
 	}
-
-	//分页
+	
+	/**
+	 * 分页查询用户
+	 */
+	
 	public void queryUserByPage(HttpServletRequest request,
-								HttpServletResponse response) throws Exception{
+			HttpServletResponse response) throws Exception{
 		//1.获取页面中的当前页码值
 		String currentPage = request.getParameter("currentPage");
 		//2.执行分页查询
@@ -229,14 +239,16 @@ public class UserServlet extends BaseServlet{
 		request.setAttribute("pageTool", pageTool);
 		//7.跳转到用户展示页面：转发
 		request.getRequestDispatcher("back/user_list.jsp").forward(request, response);
+		
+		
 	}
-
+	
 	/**
 	 * 修改用户的权限
 	 */
-
+	
 	public void updateManager(HttpServletRequest request,
-							  HttpServletResponse response) throws Exception{
+			HttpServletResponse response) throws Exception{
 		//获取请求中的参数
 		Integer uid = Integer.valueOf(request.getParameter("uid"));
 		Integer manager = Integer.valueOf(request.getParameter("manager"));
@@ -246,15 +258,15 @@ public class UserServlet extends BaseServlet{
 			//修改成功
 			queryUserByPage(request,response);
 		}
-
+		
 	}
-
+	
 	/**
 	 * 批量删除
-	 * @throws Exception
+	 * @throws Exception 
 	 */
 	public void batchDelete(HttpServletRequest request,
-							HttpServletResponse response) throws Exception {
+			HttpServletResponse response) throws Exception {
 		//获取需要删除的id
 		String[] values = request.getParameterValues("ids");
 		//将数组转换成功字符串输出
@@ -265,10 +277,21 @@ public class UserServlet extends BaseServlet{
 		if (num>0) {
 			queryUserByPage(request, response);
 		}
-
+		
 	}
-
-
-
-
+	/**
+	 * 首页退出登录
+	 * @throws IOException 
+	 */
+	public void frontLoginOut(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		//创建session对象
+		HttpSession session = request.getSession();
+		//移除session的数据
+		session.removeAttribute("frontUser");
+		//跳转到首页
+		response.sendRedirect("index.jsp");
+		
+	}
+	
 }

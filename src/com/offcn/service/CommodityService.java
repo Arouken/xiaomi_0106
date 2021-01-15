@@ -1,5 +1,7 @@
 package com.offcn.service;
 
+import java.util.List;
+
 import com.offcn.pojo.Commodity;
 import com.offcn.utils.PageTool;
 
@@ -18,5 +20,9 @@ public interface CommodityService {
 	Commodity queryCommodityById(Integer cid);
 	//确定修改
 	int updateCommodity(Commodity commodity);
+	//小米明星单品
+	List<Commodity> queryIndexCommodity();
+	//查询家电
+	List<Commodity> queryIndexHomeCommodity();
 
 }

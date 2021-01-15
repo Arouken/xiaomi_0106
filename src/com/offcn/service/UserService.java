@@ -1,5 +1,7 @@
 package com.offcn.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.offcn.pojo.User;
@@ -36,11 +38,14 @@ public interface UserService {
 	//管理员登录
 	User adminLogin(String username, String userpwd);
 
-
-    PageTool<User> queryByPage(String currentPage);
+	//分页查询用户
+	PageTool<User> queryByPage(String currentPage);
 
 	//修改权限
 	int updateManager(Integer manager, Integer uid);
 
+	//批量删除
 	int batchDelete(String[] values);
+	
+
 }
